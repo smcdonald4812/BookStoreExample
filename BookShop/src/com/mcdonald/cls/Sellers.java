@@ -2,7 +2,7 @@ package com.mcdonald.cls;
 
 public class Sellers {
 	private int id;
-	private String name, address, mobile, email;
+	private String name, address, mobile, email, info;
 	public int getId() {
 		return id;
 	}
@@ -32,5 +32,11 @@ public class Sellers {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
 	}
 }

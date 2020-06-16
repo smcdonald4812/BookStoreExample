@@ -1,8 +1,8 @@
 package com.mcdonald.cls;
 
 public class Books {
-	private int id, year;
-	private String title, author, publisher, info, isbn;
+	private int id, year, stock;
+	private String title, author, publisher, info, isbn, condition, seller;
 	private float cost;
 	public int getId() {
 		return id;
@@ -51,5 +51,23 @@ public class Books {
 	}
 	public void setCost(float cost) {
 		this.cost = cost;
+	}
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	public String getSeller() {
+		return seller;
+	}
+	public void setSeller(String seller) {
+		this.seller = seller;
 	}
 }

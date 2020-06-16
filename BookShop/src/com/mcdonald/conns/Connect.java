@@ -260,6 +260,81 @@ public class Connect {
 		}
 		return u;
 	}
+	public Sellers getSeller(int id) {
+		Sellers u = new Sellers();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			PreparedStatement ps = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root")
+					.prepareStatement(
+							"SELECT * FROM bookshopbasic.bookseller WHERE id=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				u.setId(rs.getInt(1));
+				u.setName(rs.getString(2));
+				u.setAddress(rs.getString(3));
+				u.setMobile(rs.getString(4));
+				u.setEmail(rs.getString(5));
+				u.setInfo(rs.getString(6));
+			}
+			return u;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
+	public List<Books> getStock(int id) {
+		List<Books> b = new ArrayList<>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			PreparedStatement ps = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookshopbasic", "root", "root")
+					.prepareStatement(
+							"SELECT " +
+							"		 `bookseller`.`name`," +
+							"        `books`.`id`," + 
+							"        `books`.`title`," + 
+							"        `books`.`author`," + 
+							"        `books`.`publisher`," + 
+							"        `books`.`printYear`," + 
+							"        `books`.`info`," + 
+							"        `books`.`cost`," + 
+							"        `books`.`isbn`," + 
+							"        `bookcondition`.`condition`," + 
+							"        `bookstock`.`stock`" + 
+							"    FROM" + 
+							"        ((`bookstock`" + 
+							"        JOIN `bookseller` ON ((`bookstock`.`sellerid` = `bookseller`.`id`)))" + 
+							"        JOIN `books` ON ((`books`.`id` = `bookstock`.`title`))" +
+							"		 JOIN `bookcondition` ON ((`bookstock`.`conditionid` = `bookcondition`.`conditionid`)))"+
+							"    WHERE" + 
+							"        (`bookstock`.`sellerid` = ?)");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Books u = new Books();
+				u.setSeller(rs.getString(1));
+				u.setId(rs.getInt(2));
+				u.setTitle(rs.getString(3));
+				u.setAuthor(rs.getString(4));
+				u.setPublisher(rs.getString(5));
+				u.setYear(rs.getInt(6));
+				u.setInfo(rs.getString(7));
+				u.setCost(rs.getFloat(8));
+				u.setIsbn(rs.getString(9));
+				u.setCondition(rs.getString(10));
+				u.setStock(rs.getInt(11));
+				b.add(u);
+			}
+			return b;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
 	public int setNewUser(Users user) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

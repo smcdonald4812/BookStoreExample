@@ -48,6 +48,7 @@
 					<li class="nav-item"><a class="nav-link text-secondary" href="store.jsp">Home</a></li>
 					<li class="nav-item"><a class="nav-link text-secondary" href="about.jsp">About</a></li>
 					<li class="nav-item"><a class="nav-link text-secondary" href="contact.jsp">Contact</a></li>
+					<li class="nav-item"><a class="nav-link text-secondary" href="sellers.jsp">Sellers</a></li>
 					<%
 						if(flag) {
 					%>
